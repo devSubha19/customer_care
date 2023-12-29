@@ -13,7 +13,11 @@ use App\Http\Controllers\UserController;
 |
 */
 //admin
-Route::get('/', [UserController::class, 'user'])->name('user');
+Route::get('viewuser', [UserController::class, 'user'])->name('user');
+Route::get('adduser', [UserController::class, 'adduser'])->name('adduser');
+Route::post('saveuser', [UserController::class, 'saveuser'])->name('saveuser');
+Route::get('banuser', [UserController::class, 'banuser'])->name('banuser');
+Route::get('addcall', [UserController::class, 'addcall'])->name('addcall');
 
 ?>
 

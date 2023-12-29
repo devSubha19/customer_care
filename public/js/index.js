@@ -10,9 +10,20 @@ menuButton.addEventListener("click", () => {
   mainContent.classList.toggle("main-content-expanded");
 });
 
-console.log("hi"); 
+ 
 
+function showpass(inputId) {
+    const eyeicon = document.querySelector(`#${inputId} ~ .eye i`);
+    
+    eyeicon.classList.toggle('fa-eye-slash');
+    eyeicon.classList.toggle('fa-eye');
+    eyeicon.classList.toggle('open');
+    
+    const passwordInput = document.getElementById(inputId);
 
+    const inputType = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = inputType;
+}
  
     function handleClick(event) {
         const clickedUrl = event.target.getAttribute('href');

@@ -413,6 +413,9 @@ body {
        
     }
 
+    td,th{
+        text-align: center;
+    }
     .grid-item:hover .dropdown-content {
       display: block;
      }

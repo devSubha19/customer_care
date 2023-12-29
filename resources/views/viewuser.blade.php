@@ -23,7 +23,7 @@
           <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6 text-left">User</div>
-                <div class="col-xs-6 text-right"> <a href="" class="btn btn-info">Add User</a></div>
+                <div class="col-xs-6 text-right"> <a href="adduser" class="btn btn-info">Add User</a></div>
               </div>
           </div>
           <div class="panel-body">
@@ -39,14 +39,22 @@
                       </tr>                      
                   </thead>
                    <tbody> 
-                <tr>                                   
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                       @foreach ($users as $user)
+                <tr>                    
+                    <td>{{$user->firstname}} {{$user->lastname}}</td>
+                    <td>{{$user->phone}}</td>
+                    <td>{{$user->utype}}</td>
+                    <td>{{$user->gender}}</td>
+                    <td>{{$user->dob}}</td>
+                    <td>
+                        @if($user->status==0)  
+                        <a href="{{route('banuser', [ 'id' => $user->id, 'status' => $user->status ])}}" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i></a>
+                     @else
+                        <a href="{{route('banuser', [ 'id' => $user->id, 'status' => $user->status ])}}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i></a>   
+                     @endif 
+                    </td>
                 </tr>
+                @endforeach               
                    </tbody>
              
              </table>
