@@ -39,7 +39,5 @@ class UserController extends Controller
         return redirect('viewuser')->with("success","$sup->name $status");
     }
 
-    public function addcall(Request $request){
-            return view('addcall');
-    }
+    
 }
