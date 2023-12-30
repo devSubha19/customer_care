@@ -32,14 +32,14 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Number:</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="" value=""
+                                    <input type="number" class="form-control" id="" value=""
                                         placeholder="Calling Number" name="callnum" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Number:</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="" value=""
+                                    <input type="number" class="form-control" id="" value=""
                                         placeholder="Registered Number" name="regnum" required>
                                 </div>
                             </div>

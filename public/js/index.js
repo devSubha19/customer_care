@@ -45,4 +45,11 @@ function showpass(inputId) {
             anchor.parentElement.classList.add('active');
         }
     });
+     
+    $(document).ready(function() {
+        $('#example').DataTable();
+        $('a[rel*=facebox]').facebox()
+    });
+
+    
  
