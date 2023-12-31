@@ -37,13 +37,16 @@
 
 #facebox .close{
   position:absolute;
-  top:5px;
+  top:10px;
   right:5px;
   padding:2px;
-  background:#fff;
+   height: 30px;
+  width: 30px;
 }
 #facebox .close img{
-  opacity:0.3;
+   background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 #facebox .close:hover img{
   opacity:1.0;

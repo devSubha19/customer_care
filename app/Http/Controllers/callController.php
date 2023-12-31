@@ -68,13 +68,14 @@ class callController extends Controller
             $others->remarks = $others_remarks;
             $others->save();
         }
-        return redirect('addcall');
+        return redirect('addcall')->with('success', 'call saved');
     }
 
     public function calllist(Request $request)
     {
         $fromDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
+
 
         $result = DB::table('accounts_call')
             ->select(DB::raw("'Accounts' as call_about"), 'customer_name', 'calling_number', 'reg_num', 'issue', 'remarks', 'created_at', 'admin_remarks', 'status', 'id')
@@ -101,7 +102,7 @@ class callController extends Controller
             $result = $result->where('created_at', '<=', $toDate);
         }
 
-        return view('calllist', ['result' => $result]);
+        return view('calllist', ['result' => $result, 'fromDate' => $fromDate, 'toDate' => $toDate]);
     }
 
     public function show_rem_emp(Request $request)

@@ -1,4 +1,5 @@
-@include('layouts.header')
+@extends('layouts.facebox')
+@section('content')
 <div class="col-md-12">
     <h2 style="text-align: center"><u>Remarks</u></h2>
     <style>
@@ -43,4 +44,4 @@
         </div>
     </center>
 </div>
-@include('layouts.footer')
+@endsection

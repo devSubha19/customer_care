@@ -15,9 +15,8 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
-
         <div class="col-md-12">
-            <div class="panel panel-primary">
+             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6 text-left">Complaints</div>

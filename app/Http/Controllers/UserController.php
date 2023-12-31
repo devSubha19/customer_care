@@ -23,7 +23,7 @@ class UserController extends Controller
         $admin->name = $request->name;
         $admin->password = $request->password;  
         $admin->save();
-        return view('admin');
+        return redirect('admin')->with('success', 'admin updated successfully');
     }
     public function user(Request $request){
         $users = usertab::all();
@@ -49,7 +49,7 @@ class UserController extends Controller
         $user->dob = $request->dob;
         $user->password = $request->password;
         $user->update();
-        return redirect('viewuser');
+        return redirect('viewuser')->with('success', 'user updated successfully');  
     }
 
     public function saveuser(Request $request){
@@ -65,7 +65,7 @@ class UserController extends Controller
          $user->password = $request->password;
         $user->save();
 
-        return redirect('viewuser');
+        return redirect('viewuser')->with('success', 'user added successfully');
     }
 
     public function banuser(Request $request){
@@ -73,7 +73,7 @@ class UserController extends Controller
         $sup->status = ($request->status == 0) ? 1 : 0;
         $sup->save();
         $status  = ($sup->status == 0 ) ?  "banned" : "unbanned"; 
-        return redirect('viewuser')->with("success","$sup->name $status");
+        return redirect('viewuser')->with("success","$sup->firstname $sup->lastname $status");
     }
 
     

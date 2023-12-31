@@ -131,8 +131,8 @@
         <form action="userlogin" method="post">
             @csrf
             <h2>Login</h2>
-            <input type="text" placeholder="Enter UserId" name="userId">
-            <input type="password" placeholder="Enter Password" name="password">
+            <input type="text" placeholder="Enter UserId" name="userId" required>
+            <input type="password" required placeholder="Enter Password" name="password">
             <button type="submit">Login</button>
         </form>
     </div>

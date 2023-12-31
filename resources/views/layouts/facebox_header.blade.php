@@ -24,29 +24,35 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="src/facebox.css">
 <script src="src/facebox.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    $(document).ready(function () {
-      $('#example').dataTable();
-
-        @if(Session::has('success'))
-            toastr.options = {
-                "closeButton": true,
-                "timeOut": 3000  
-            };
-            toastr.success("{{ session('success') }}");
-        @endif
-
-      
-        @if(Session::has('error'))
-            toastr.options = {
-                "closeButton": true,
-                "timeOut": 3000  
-            };
-            toastr.error("{{ session('error') }}");
-        @endif
-    });
-</script>
+<style>
+   
+    .forminp label{
+        font-size: 2rem;  
+        text-align: center; 
+        font-family: trebuchet ms;
+    }
+    .forminp textarea{
+        color: black;
+        width: 99.9%;
+        border-radius: .6rem;
+        font-size: 1.5rem;
+        height: 22vh;
+        padding: 1rem;
+    }
+    .forminp{
+        margin-bottom: 4px;
+    }
+    .sub{
+        width: 80%;
+        border: 1px solid rgb(0, 0, 0);
+    }
+    #facebox .popup .content{
+        background-color: rgb(150, 235, 228);
+            font-family: verdana;
+    }
+  
+</style>
 </head>
 <body>
+<div id="fbody">
  
