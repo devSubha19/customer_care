@@ -11,7 +11,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-6 text-left">Closed Complained</div>
+                        <div class="col-xs-6 text-left">Closed Complaints</div>
                         
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                                 <td>{{$ac->remarks}}</td>
                                 <td>{{$ac->complaint_remarks}}</td>
                                 <td>{{$ac->status}}</td>
-                                <td> <a href="{{ route('changeaction', ['call_about' => $call_about, 'id' => $ac->id]) }}"
+                                <td> <a href="{{ route('changeaction', ['call_about' => $call_about, 'id' => $ac->id, 'flag' => 1]) }}"
                                     rel="facebox">
                                     <i class="fa-solid fa-hand-pointer" style="font-size: 2rem"></i>
                                 </a></td>

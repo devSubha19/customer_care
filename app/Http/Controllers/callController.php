@@ -122,7 +122,7 @@ class callController extends Controller
             $cmp = complaint_call::find($id);
             if ($cmp) {
                 $cmp_admin_rem = $cmp->admin_remarks;
-                $cmp_remarks = $cmp->accounts_remarks;
+                $cmp_remarks = $cmp->complaint_remarks;
             }
         } else if ($call_about == 'General Query') {
             $gqry = general_query::find($id);
@@ -135,7 +135,7 @@ class callController extends Controller
                 $others_admin_rem = $others->admin_remarks;
             }
         }
-        
+         
         return view('show_rem_emp', compact('id', 'call_about', 'ac_admin_rem', 'ac_remarks', 'cmp_admin_rem', 'cmp_remarks', 'gqry_admin_rem', 'others_admin_rem'));
     }        
 }

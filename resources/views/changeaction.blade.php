@@ -1,11 +1,16 @@
 @extends('layouts.facebox')
 @section('content')
+
 <h2 style="text-align: center"><u>Actions</u></h2>
 <hr>
  
     <div class="col-md-12">
         <form action="savechangeaction" method="POST">
             @csrf
+
+            @if(isset($flag) && $flag)
+                <input type="hidden" value="{{$flag}}" name="flag">
+            @endif
             <input type="hidden" value="{{$call_about}}" name="call_about">
             <input type="hidden" value="{{$id}}" name="id">
             <div class="forminp">

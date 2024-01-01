@@ -47,9 +47,10 @@
         border: 1px solid rgb(0, 0, 0);
     }
     #facebox .popup .content{
-        background-color: rgb(150, 235, 228);
+  background: linear-gradient(to bottom, hsl(197, 98%, 48%), #ffffff);
             font-family: verdana;
     }
+    
   
 </style>
 </head>

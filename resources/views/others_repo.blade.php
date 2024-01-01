@@ -26,6 +26,7 @@
                                  <th>Remarks</th>
                                 <th>Your Remarks</th>
                                 <th>Status</th>
+                                <th>date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,6 +46,8 @@
                                  <td>{{$ac->remarks}}</td>
                                 <td>{{$ac->admin_remarks}}</td>
                                 <td>{{$ac->status}}</td>
+                                <td>{{ \Carbon\Carbon::parse($ac->created_at)->toDateString() }}</td>
+
                                 <td> <a href="{{ route('changeaction', ['call_about' => $call_about, 'id' => $ac->id]) }}"
                                     rel="facebox">
                                     <i class="fa-solid fa-hand-pointer" style="font-size: 2rem"></i>

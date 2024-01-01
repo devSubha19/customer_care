@@ -25,6 +25,11 @@
 <link rel="stylesheet" href="src/facebox.css">
 <script src="src/facebox.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<style>
+    th{
+        text-align: center;
+    }
+</style>
 <script>
     $(document).ready(function () {
       $('#example').dataTable();

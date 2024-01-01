@@ -13,20 +13,32 @@ use PDF;
 class reportController extends Controller
 {
         public function downloadrepo(Request $request){
+            $fromDate = $request->input('fromDate');
+            $toDate = $request->input('toDate');
         $result = DB::table('accounts_call')
-        ->select(DB::raw("'Accounts' as call_about"), 'customer_name', 'calling_number', 'reg_num', 'issue', 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
+        ->select('created_at', DB::raw("'Accounts' as call_about"), 'customer_name', 'calling_number', 'reg_num', 'issue', 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
         ->union(
             DB::table('complaint_call')
-                ->select(DB::raw("'Complaints' as call_about"), 'customer_name', 'calling_number', 'reg_num', 'issue', 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
+                ->select('created_at', DB::raw("'Complaints' as call_about"), 'customer_name', 'calling_number', 'reg_num', 'issue', 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
         )
         ->union(
             DB::table('general_query')
-                ->select(DB::raw("'General Query' as call_about"), 'customer_name', 'calling_number', 'reg_num', DB::raw("'' as issue"), 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
+                ->select('created_at', DB::raw("'General Query' as call_about"), 'customer_name', 'calling_number', 'reg_num', DB::raw("'' as issue"), 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
         )
         ->union(
             DB::table('others_call')
-                ->select(DB::raw("'Others' as call_about"), 'customer_name', 'calling_number', 'reg_num', DB::raw("'' as issue"), 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
+                ->select('created_at', DB::raw("'Others' as call_about"), 'customer_name', 'calling_number', 'reg_num', DB::raw("'' as issue"), 'remarks', 'created_at', 'admin_remarks', 'status', 'id', 'employee')
         )->get();
+
+        
+        if ($fromDate && $toDate) {
+            $result = $result->where('created_at', '>=', $fromDate)
+                ->where('created_at', '<=', $toDate);
+        } elseif ($fromDate) {
+            $result = $result->where('created_at', '>=', $fromDate);
+        } elseif ($toDate) {
+            $result = $result->where('created_at', '<=', $toDate);
+        }
 
         return view('downloadrepo', compact('result'));
     }
@@ -34,23 +46,37 @@ class reportController extends Controller
     public function changeaction(Request $request){
         $id = $request->id;
         $call_about = $request->call_about;
-
+        if(isset($request->flag) && $request->flag == 1){
+            $flag = $request->flag;
+        } 
         if ($call_about == 'Accounts') {
             $ac = accounts_call::find($id);
-            $remarks = $ac->remarks;
             $status = $ac->status;
+            if(isset($flag)){
+                $remarks = $ac->accounts_remarks;
+            }else{
+                $remarks = $ac->admin_remarks;
+            }
         } else if ($call_about == 'Complaints') {
             $ac = complaint_call::find($id);
-            $remarks = $ac->remarks;
             $status = $ac->status;
+            if(isset($flag)){
+                $remarks = $ac->complaint_remarks;
+            }else{
+                $remarks = $ac->admin_remarks;
+            }
         } else if ($call_about == 'General Query') {
             $ac = general_query::find($id);
-            $remarks = $ac->remarks;
+            $remarks = $ac->admin_remarks;
             $status = $ac->status;
         } else {
             $ac = others_call::find($id);
-            $remarks = $ac->remarks;
+            $remarks = $ac->admin_remarks;
             $status = $ac->status;
+        }
+        if(isset($flag)){
+            return view('changeaction', compact('id', 'call_about','remarks','status', 'flag'));
+            
         }
         return view('changeaction', compact('id', 'call_about','remarks','status'));
     }
@@ -60,17 +86,27 @@ class reportController extends Controller
         $call_about = $request->call_about;
         $remarks = $request->remarks;
         $status = $request->status; 
- 
+        $flag = $request->flag; 
         if ($call_about == 'Accounts') {
             $ac = accounts_call::find($id);
-            $ac->admin_remarks = $remarks;
+            if(isset($flag)){
+                $ac->accounts_remarks = $remarks; 
+            }else{
+
+                $ac->admin_remarks = $remarks;
+            }
             if($status){
 
                 $ac->status = $status;
             }
         } else if ($call_about == 'Complaints') {
             $ac = complaint_call::find($id);
-            $ac->admin_remarks = $remarks;
+            if(isset($flag)){
+                $ac->complaint_remarks = $remarks; 
+            }else{
+
+                $ac->admin_remarks = $remarks;
+            }
             if($status){
 
                 $ac->status = $status;
@@ -103,13 +139,14 @@ class reportController extends Controller
  
     public function downloadPDF()
     {
-        $pdf = PDF::loadView('login');
+        $pdf = PDF::loadView('testing');
     
         return $pdf->download('download_report.pdf');
     }
     
     public function accounts_open(Request $request){
         $var = accounts_call::where('status', 'open')->get();
+ 
         return view('accounts_open', compact('var'));
     }
     public function accounts_ongoing(Request $request){
@@ -155,17 +192,18 @@ class reportController extends Controller
         return view('Close_complaint', compact('var'));
     }
         public function open_account(Request $request){
-        $var = complaint_call::where('status', 'open')->get();
+        $var = accounts_call::where('status', 'open')->get();
         return view('Open_account', compact('var'));
     }
     public function ongoing_account(Request $request){
-        $var = complaint_call::where('status', 'ongoing')->get();
+        $var = accounts_call::where('status', 'ongoing')->get();
         return view('Ongoing_account', compact('var'));
     }
     public function close_account(Request $request){
-        $var = complaint_call::where('status', 'close')->get();
+        $var = accounts_call::where('status', 'close')->get();
         return view('Close_account', compact('var'));
     }
+
 
 
 }
