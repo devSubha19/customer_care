@@ -41,10 +41,10 @@ class AuthController extends Controller
                 } else {
                     if ($user_type == 'complain') {
                         session(['user_type' => $user_type, 'user_id' => $user->id]);
-                        return redirect('complain-clist')->with('success', 'logged In Successfully');
+                        return redirect('call-data-complaint')->with('success', 'logged In Successfully');
                     } elseif ($user_type == 'account') {
                         session(['user_type' => $user_type, 'user_id' => $user->id]);
-                        return redirect('account-clist')->with('success', 'logged In Successfully');
+                        return redirect('call-data-account')->with('success', 'logged In Successfully');
                     } else {
                         session(['user_type' => $user_type, 'user_id' => $user->id]);
                         return redirect('addcall')->with('success', 'logged in successfully');

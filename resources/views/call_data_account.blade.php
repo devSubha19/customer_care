@@ -11,7 +11,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-xs-6 text-left">Accounts Problem(Open)</div>
+                        <div class="col-xs-6 text-left">All Data</div>
                         
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                                 <td>{{$ac->calling_number}}</td>
                                 <td>{{$ac->reg_num}}</td>
                                 <td>{{$ac->issue}}</td>
-                                <td>{{$ac->remarks}}</td>
+                                <td>{{$ac->remarks}}</td> 
                                 <td>{{$ac->accounts_remarks}}</td>
                                 <td>{{$ac->status}}</td>
                                 <td> <a href="{{ route('changeaction', ['call_about' => $call_about, 'id' => $ac->id, 'flag' => 1]) }}"

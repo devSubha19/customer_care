@@ -8,6 +8,7 @@ use App\Models\complaint_call;
 use App\Models\general_query;
 use App\Models\others_call;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use PDF;
 
 class reportController extends Controller
@@ -40,6 +41,7 @@ class reportController extends Controller
             $result = $result->where('created_at', '<=', $toDate);
         }
 
+         
         return view('downloadrepo', compact('result'));
     }
 
@@ -202,6 +204,15 @@ class reportController extends Controller
     public function close_account(Request $request){
         $var = accounts_call::where('status', 'close')->get();
         return view('Close_account', compact('var'));
+    }
+
+    public function call_data_account(Request $request){
+        $var = accounts_call::all();
+        return view('call_data_account', compact('var'));
+    }
+    public function call_data_complaint(Request $request){
+        $var = complaint_call::all();
+        return view('call_data_complaint', compact('var'));
     }
 
 
