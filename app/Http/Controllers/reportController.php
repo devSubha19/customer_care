@@ -92,10 +92,13 @@ class reportController extends Controller
         if ($call_about == 'Accounts') {
             $ac = accounts_call::find($id);
             if(isset($flag)){
-                $ac->accounts_remarks = $remarks; 
+                $ac->accounts_remarks = $remarks;
+                $ac->account_updated_at = now()->toDateTimeString();
+                $ac->accounts_emp = session('user_id');
             }else{
 
                 $ac->admin_remarks = $remarks;
+                $ac->admin_updated_at = now()->toDateTimeString(); 
             }
             if($status){
 
@@ -105,9 +108,12 @@ class reportController extends Controller
             $ac = complaint_call::find($id);
             if(isset($flag)){
                 $ac->complaint_remarks = $remarks; 
+                $ac->complaint_updated_at = now()->toDateTimeString(); 
+                $ac->complaint_emp = session('user_id');
             }else{
 
                 $ac->admin_remarks = $remarks;
+                $ac->admin_updated_at = now()->toDateTimeString(); 
             }
             if($status){
 
@@ -116,6 +122,7 @@ class reportController extends Controller
         } else if ($call_about == 'General Query') {
             $ac = general_query::find($id);
             $ac->admin_remarks = $remarks;
+            $ac->admin_updated_at = now()->toDateTimeString(); 
             if($status){
 
                 $ac->status = $status;
@@ -123,6 +130,7 @@ class reportController extends Controller
         } else {
             $ac = others_call::find($id);
             $ac->admin_remarks = $remarks;
+            $ac->admin_updated_at = now()->toDateTimeString(); 
             if($status){
 
                 $ac->status = $status;

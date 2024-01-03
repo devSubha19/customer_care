@@ -47,13 +47,16 @@
                                 <td>{{$ac->issue}}</td>
                                 <td>{{$ac->remarks}}</td>
                                 <td>{{$ac->accounts_remarks}} <br><br>
+                                    @if($ac->accounts_emp != null)
                                     @php
                                         $upby = App\Models\usertab::find($ac->accounts_emp);
                                         echo "
                                         <span style='color:blueviolet'>
                                             <b>Updated By: </b>$upby->firstname $upby->lastname <b><br>at ".\Carbon\Carbon::parse($ac->account_updated_at)->format('h:i A') ."</b></span> ";
                                     @endphp</td>
-                                
+                                    @else
+                                    <font color"red">Not Reviewed by anyone yet</font>
+                                    @endif 
                                 <td>{{$ac->status}}</td>
                                 <td>{{ \Carbon\Carbon::parse($ac->created_at)->toDateString() }}</td>
                                 <td> <a href="{{ route('changeaction', ['call_about' => $call_about, 'id' => $ac->id]) }}"

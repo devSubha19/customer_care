@@ -19,8 +19,9 @@ use App\Http\Controllers\reportController;
 //accounts
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('userlogin', [AuthController::class, 'auth'])->name('userlogin');
-Route::post('logout', [AuthController::class, 'UserLogOut'])->name('logout');
+Route::get('logout', [AuthController::class, 'UserLogOut'])->name('logout');
 Route::get('changeaction', [reportController::class, 'changeaction'])->name('changeaction');
+Route::post('savechangeaction', [reportController::class, 'savechangeaction'])->name('savechangeaction');
 
 
 //admin
@@ -37,7 +38,6 @@ Route::middleware(['isadmin'])->group(function () {
     Route::get('banuser', [UserController::class, 'banuser'])->name('banuser');
 
     Route::get('downloadrepo', [reportController::class, 'downloadrepo'])->name('downloadrepo');
-    Route::post('savechangeaction', [reportController::class, 'savechangeaction'])->name('savechangeaction');
     Route::get('seetype', [reportController::class, 'seetype'])->name('seetype');
     Route::get('download', [reportController::class, 'downloadPDF'])->name('download');
 

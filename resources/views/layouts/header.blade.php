@@ -1,3 +1,9 @@
+@php
+            use Illuminate\Support\Facades\Crypt;
+        if (!session('user_id')) {
+          echo "<script>window.location.href='" . route('logout') . "';</script>";
+        }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>

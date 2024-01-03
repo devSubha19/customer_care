@@ -24,7 +24,7 @@
                                 <th>Calling Number</th>
                                 <th>Registered Number</th>
                                 <th>Issue</th>
-                                <th>Remarks</th>
+                                <th>Complaints Remarks</th>
                                 <th>Complaints Remark</th>
                                 <th>Status</th>
                                 <th>date</th>
@@ -47,13 +47,16 @@
                                 <td>{{$ac->issue}}</td>
                                 <td>{{$ac->remarks}}</td>
                                 <td>{{$ac->complaint_remarks}} <br><br>
+                                    @if($ac->complaint_emp != null)
                                     @php
                                         $upby = App\Models\usertab::find($ac->complaint_emp);
                                         echo "
                                         <span style='color:blueviolet'>
                                             <b>Updated By: </b>$upby->firstname $upby->lastname <b><br>at ".\Carbon\Carbon::parse($ac->complaint_updated_at)->format('h:i A') ."</b></span> ";
                                     @endphp</td>
-                                 
+                                    @else
+                                    <font color"red">Not Reviewed by anyone yet</font>
+                                    @endif                                  
                                 <td>{{$ac->status}}</td>
                                 <td>{{ \Carbon\Carbon::parse($ac->created_at)->toDateString() }}</td>
 

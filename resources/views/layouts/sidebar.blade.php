@@ -1,5 +1,6 @@
 <div class="sidebar">
 <ul class="grid">
+        @if(session('user_type') == 'admin')
         <li class="grid-item">
             <i class="fa-solid fa-user-doctor"></i>
             <a href="admin">admin</a>
@@ -42,6 +43,8 @@
                         <a href="others-repo">Others Query</a>
         </li>
 
+        @elseif(session('user_type') == 'employee')
+
         <li class="grid-item">
             </i><i class="fas fa-plus"></i>
             <a href="addcall">Add Call</a>
@@ -51,7 +54,8 @@
             <i class="fa-solid fa-list"></i>
             <a href="calllist">Call List</a>
         </li>
-
+        
+        @elseif(session('user_type') == 'account')
         <li class="grid-item">
             <i class="fa-solid fa-o"></i>
             <a href="open-account">Open</a>
@@ -71,7 +75,7 @@
             <i class="fa-solid fa-rectangle-list"></i>
             <a href="call-data-account">Call Data</a>
         </li>
-
+        @else
         <li class="grid-item">
             <i class="fa-solid fa-o"></i>
             <a href="open-complaint">Open</a>
@@ -90,12 +94,9 @@
         <li class="grid-item">
             <i class="fa-solid fa-rectangle-list"></i>
             <a href="call-data-complaint">Call Data</a>
-            <a href="call-data-complaint">Call Data</a>
-            <a href="call-data-complaint">Call Data</a>
-            <a href="call-data-complaint">Call Data</a>
         </li>
 
-
+        @endif 
 
     </ul>
     <br>

@@ -23,7 +23,7 @@
                                 <th>Emp name</th>
                                 <th>Calling Number</th>
                                 <th>Registered Number</th>
-                                 <th>Remarks</th>
+                                 <th>Customer Remarks</th>
                                 <th>Your Remarks</th>
                                 <th>Status</th>
                                 <th>date</th>

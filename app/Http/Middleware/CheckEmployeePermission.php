@@ -14,7 +14,9 @@ class CheckEmployeePermission
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
+    {   
+        if(session('user_id') != null){
+            
         $userType = session('user_type');
 
         $allowedUserType = 'employee';
@@ -23,6 +25,12 @@ class CheckEmployeePermission
         }
 
         return $next($request);
+        
+        }else{
+            return redirect('logout');
+        }
+
+
     }
     }
 
