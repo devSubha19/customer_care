@@ -39,7 +39,7 @@ Route::middleware(['isadmin'])->group(function () {
 
     Route::get('downloadrepo', [reportController::class, 'downloadrepo'])->name('downloadrepo');
     Route::get('seetype', [reportController::class, 'seetype'])->name('seetype');
-    Route::get('download', [reportController::class, 'downloadPDF'])->name('download');
+    Route::get('/download', [reportController::class, 'downloadPDF'])->name('download');
 
     Route::get('accounts-open', [reportController::class, 'accounts_open'])->name('accounts_open');
     Route::get('accounts-ongoing', [reportController::class, 'accounts_ongoing'])->name('accounts_ongoing');

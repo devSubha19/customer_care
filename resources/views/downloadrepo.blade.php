@@ -70,7 +70,7 @@
 #facebox div.content {
     padding: 20px;
     border-radius: 8px;
-    background-color: #ffffff; /* Your preferred background color */
+    background-color: #ffffff;  
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     line-height: 1.8;
 }
@@ -96,7 +96,8 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6 text-left">Download Report</div>
-                        <div class="col-xs-6 text-right"> <a href="download" class="btn btn-info">Download <i
+                        @php $serializeArray = serialize($result) @endphp
+                        <div class="col-xs-6 text-right"> <a href="{{route('download', ['result' => $serializeArray])}}" class="btn btn-info">Download <i
                                     class="fas fa-download"></i></a></div>
                     </div>
                 </div>

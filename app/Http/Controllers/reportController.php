@@ -8,6 +8,8 @@ use App\Models\complaint_call;
 use App\Models\general_query;
 use App\Models\others_call;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\User;
 use PDF;
 
@@ -40,8 +42,7 @@ class reportController extends Controller
         } elseif ($toDate) {
             $result = $result->where('created_at', '<=', $toDate);
         }
-
-         
+            
         return view('downloadrepo', compact('result'));
     }
 
@@ -147,11 +148,42 @@ class reportController extends Controller
     }
 
  
-    public function downloadPDF()
-    {
-        $pdf = PDF::loadView('testing');
+    public function downloadPDF(Request $request)
+    {   
+  
+        $result = unserialize($request->result);
+         
+
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        
+
+        $headers1 = ['Customer Name', 'Calling Number', 'Registered Number', 'Call Type', 'Issue', 'Customer Remarks', 'Admin Remarks', 'Status', 'Employee name', 'Record Created At'];
+
+        $headers2 = [
+            'customer_name', 'calling_number', 'reg_num', 'call_about', 'issue', 'remarks', 'admin_remarks', 'status', 'employee', 'created_at'];
     
-        return $pdf->download('download_report.pdf');
+ 
+        foreach ($headers1 as $key => $header) {
+            $sheet->setCellValueByColumnAndRow($key + 1, 1, $header);
+        }
+    
+      
+        foreach ($result as $rowIndex => $rowData) {
+            foreach ($headers2 as $colIndex => $header) {
+                $value = $rowData->{$header};
+                $sheet->setCellValueByColumnAndRow($colIndex + 1, $rowIndex + 2, $value);
+            }
+        }
+    
+ 
+        $filename = 'customer_data.xlsx';
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($filename);
+    
+        return response()->download($filename)->deleteFileAfterSend(true);
+
     }
     
     public function accounts_open(Request $request){

@@ -12,40 +12,6 @@ body {
   overflow-x:hidden;
 }
 
-.navbar {
-  background-color: #27005d;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-}
-
-.logo {
-  font-size: 30px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 1000;
-  color: #4d7ee7;
-}
-
-.navbar ul {
-  display: flex;
-  list-style-type: none;
-  gap: 30px;
-  padding-right: 60px;
-  color: white;
-}
-
-.navbar li {
-  display: flex;
-  gap: 5px;
-}
-
-.navbar li:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
-
  
 
 .profile {
@@ -284,46 +250,17 @@ body {
   background-color:rgb(12, 134, 134); 
  
 }
-.navbar {
-  background-color: #27005d;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  position: sticky;
-  
-}
-
-
-.navbar ul {
-  display: flex;
-  list-style-type: none;
-  gap: 30px;
-  padding-right: 60px;
-  color: white;
-}
-
-.navbar li {
-  display: flex;
-  gap: 5px;
-}
-
-.navbar li:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
  
 .sidebar {
     height: 100vh;
     width: 270px;
     position: fixed;
     left: 0;
-    background-color: #060916;
+    background-color: #d53818;
     overflow: auto;
     transition: all 0.5s ease-in-out;
     z-index: 1;
-    margin-top: -2rem;
+    /* margin-top: -2rem; */
     padding-bottom: 1rem;
     border-right: 2px solid black;
   }
@@ -371,7 +308,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #060916;
+    background-color: #d53818;
     transition: background-color 0.3s ease;
     border: 1px solid white;
  }
@@ -743,11 +680,12 @@ h1 {
 }
  
 
-  .navbar {
-    background-color: rgb(0, 0, 0);
+  /* .navbar {
+    background-color:rgb(118 36 197);
     height: 7rem;
     border-bottom: 1px solid transparent;  
     transition: border-bottom 0.3s ease;  
+    
     
   }
 
@@ -772,4 +710,4 @@ h1 {
     display: flex;
     gap: 5px;
     cursor: pointer;
-  }
+  } */
